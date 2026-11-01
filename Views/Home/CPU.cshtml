@@ -1,0 +1,390 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CPU</title>
+    <style>
+        /* phần body */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* khung chứa danh sách sản phẩm */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* chia làm 3 cột bằng nhau */
+            gap: 15px; /* khoảng cách giữa các thẻ */
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* thẻ sản phẩm */
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s ease;
+        }
+
+            .product-card:hover {
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            }
+
+        /* phần hình ảnh */
+        .product-image {
+            position: relative;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+            .product-image img {
+                max-width: 100%;
+                height: auto;
+                object-fit: contain;
+            }
+        /*  thông tin sản phẩm */
+        .product-info {
+            flex-grow: 1;
+        }
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d32f2f; /* màu đỏ cam */
+            margin-bottom: 8px;
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 8px;
+            font-weight: normal;
+        }
+
+        .product-title {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+
+
+
+
+        .stock-status i {
+            margin-right: 5px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #1976d2;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+
+            .add-to-cart-btn:hover {
+                background-color: #115293;
+            }
+        /* =========================================
+        DÒNG "SẴN HÀNG" + NÚT CỘNG (giống trang chủ)
+        ========================================= */
+        .ps-foot {
+            display: flex; /* xếp chữ và nút trên cùng 1 hàng */
+            align-items: center; /* canh giữa theo chiều dọc */
+            justify-content: space-between; /* chữ bên trái, nút bên phải */
+            margin-top: auto; /* đẩy xuống đáy thẻ sản phẩm */
+            padding-top: 10px;
+        }
+
+            .ps-foot form {
+                margin: 0;
+                padding: 0;
+                display: inline-block;
+            }
+
+            .ps-foot .ps-stock {
+                color: #16a34a; /* xanh lá */
+                font-size: 12px;
+                font-weight: 600;
+            }
+
+            .ps-foot .ps-add {
+                width: 28px;
+                height: 28px;
+                padding: 0;
+                border: none;
+                border-radius: 50%; /* hình tròn */
+                background: #1e6fd9; /* xanh dương */
+                color: #fff; /* dấu + màu trắng */
+                font-size: 20px;
+                line-height: 28px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+                .ps-foot .ps-add:hover {
+                    background: #0b3d91; /* rê chuột: xanh đậm hơn */
+                }
+    </style>
+</head>
+<body>
+    <div class="product-grid">
+
+        <!-- sản phẩm 1 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU1.png" alt="PC 1">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">10.250.000 đ</div>
+                <div class="product-title">
+                    CPU Intel Core Ultra 9 285K (Up 5.7 GHz, 24 Nhân 24 Luồng, 36MB Cache, Arrow Lake)
+                </div>
+                <div class="ps-foot">
+                    <span class="ps-stock">Sẵn hàng</span>
+                    <form action="/Home/ThemVaoGio" method="post">
+                        <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                        <input type="hidden" name="gia" value="3990000" />
+                        <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                        <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- sản phẩm 2 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU2.png" alt="PC 2">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">
+                    9.450.000 đ
+                </div>
+                <div class="product-title">
+                    Đánh giá CPU Intel Core Ultra 9 285K (Up 5.7 GHz, 24 Nhân 24 Luồng, 36MB Cache, Arrow Lake)
+                </div>
+                <div class="ps-foot">
+                    <span class="ps-stock">Sẵn hàng</span>
+                    <form action="/Home/ThemVaoGio" method="post">
+                        <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                        <input type="hidden" name="gia" value="3990000" />
+                        <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                        <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- sản phẩm 3 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU3.png" alt="PC 3">
+            </div>
+            <div class="product-info">
+                <div class="product-price">
+                    69.950.000 đ
+
+                </div>
+                <div class="product-title">
+                    CPU AMD Ryzen Threadripper 7970X (Up 5.3 GHz, 32 Nhân 64 Luồng, 128MB Cache, sTR5)
+                </div>
+                <div class="ps-foot">
+                    <span class="ps-stock">Sẵn hàng</span>
+                    <form action="/Home/ThemVaoGio" method="post">
+                        <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                        <input type="hidden" name="gia" value="3990000" />
+                        <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                        <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- sản phẩm 4 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU4.png" alt="PC 4">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">2.250.000 đ</div>
+                <div class="product-title">
+                    CPU AMD Ryzen 5 7500F Tray (Up 5.0GHz, 6 nhân 12 luồng, 32MB Cache, AM5)
+                </div>
+                <div class="ps-foot">
+                    <span class="ps-stock">Sẵn hàng</span>
+                    <form action="/Home/ThemVaoGio" method="post">
+                        <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                        <input type="hidden" name="gia" value="3990000" />
+                        <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                        <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!-- sản phẩm 5 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU5.png" alt="PC 5">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">3.250.000 đ</div>
+                <div class="product-title">
+                    CPU AMD Ryzen 5 7500X3D Tray (Up 4.5GHz, 6 nhân 12 luồng, 96MB Cache, AM5)
+                </div>
+            </div>
+            <div class="ps-foot">
+                <span class="ps-stock">Sẵn hàng</span>
+                <form action="/Home/ThemVaoGio" method="post">
+                    <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                    <input type="hidden" name="gia" value="3990000" />
+                    <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                    <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                </form>
+            </div>
+        </div>
+        <!-- sản phẩm 6 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU6.png" alt="PC 6">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">6.250.000 đ</div>
+                <div class="product-title">
+                    CPU AMD Ryzen 5 7600X (Up 5.3GHz, 6 nhân 12 luồng, 32MB Cache, AM5)
+                </div>
+            </div>
+            <div class="ps-foot">
+                <span class="ps-stock">Sẵn hàng</span>
+                <form action="/Home/ThemVaoGio" method="post">
+                    <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                    <input type="hidden" name="gia" value="3990000" />
+                    <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                    <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                </form>
+            </div>
+        </div>
+        <!-- sản phẩm 7 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU7.png" alt="PC 7">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">9.250.000 đ</div>
+                <div class="product-title">
+                    CPU AMD Ryzen 5 7600X3D (Up 4.7GHz, 6 nhân 12 luồng, 96MB Cache, AM5)
+                </div>
+            </div>
+            <div class="ps-foot">
+                <span class="ps-stock">Sẵn hàng</span>
+                <form action="/Home/ThemVaoGio" method="post">
+                    <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                    <input type="hidden" name="gia" value="3990000" />
+                    <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                    <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                </form>
+            </div>
+        </div>
+        <!-- sản phẩm 8 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU8.png" alt="PC 8">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">12.250.000 đ</div>
+                <div class="product-title">
+                    CPU Intel Core i9 14900KF Tray (Up 6.0 GHz, 24 Nhân 32 Luồng, 36MB Cache, Raptor Lake)
+                </div>
+            </div>
+            <div class="ps-foot">
+                <span class="ps-stock">Sẵn hàng</span>
+                <form action="/Home/ThemVaoGio" method="post">
+                    <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                    <input type="hidden" name="gia" value="3990000" />
+                    <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                    <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                </form>
+            </div>
+        </div>
+        <!-- sản phẩm 9 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU9.png" alt="PC 9">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">5.250.000 đ</div>
+                <div class="product-title">
+                    CPU Intel Core Ultra 5 250KF Plus (Up 5.3 GHz, 18 Nhân 18 Luồng, 30MB Cache, Arrow Lake)
+                </div>
+            </div>
+            <div class="ps-foot">
+                <span class="ps-stock">Sẵn hàng</span>
+                <form action="/Home/ThemVaoGio" method="post">
+                    <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                    <input type="hidden" name="gia" value="3990000" />
+                    <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                    <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                </form>
+            </div>
+        </div>
+        <!-- sản phẩm 10 -->
+        <div class="product-card">
+            <div class="product-image">
+                <img src="~/Content/img/CPU10.png" alt="PC 10">
+
+            </div>
+            <div class="product-info">
+                <div class="product-price">5.250.000 đ</div>
+                <div class="product-title">
+                    CPU Intel Core Ultra 5 250K Plus Tray (Up 5.3 GHz, 18 Nhân 18 Luồng, 30MB Cache, Arrow Lake)
+                </div>
+            </div>
+            <div class="ps-foot">
+                <span class="ps-stock">Sẵn hàng</span>
+                <form action="/Home/ThemVaoGio" method="post">
+                    <input type="hidden" name="ten" value="Intel Core i5-14400F (Up to 4.7GHz, 10 nhân 16 luồng)" />
+                    <input type="hidden" name="gia" value="3990000" />
+                    <input type="hidden" name="hinh" value="/Content/img/CPU1.PNG" />
+                    <button type="submit" class="ps-add" onclick="alert('Đã thêm sản phẩm vào giỏ hàng!')">+</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
